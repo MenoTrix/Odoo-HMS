@@ -1,0 +1,73 @@
+<odoo>
+<data>
+<record id="doctor_action" model="ir.actions.act_window">
+    <field name="name">Doctors</field>
+    <field name="res_model">hms.doctors</field>
+</record>
+<menuitem
+    id="doctor_menu_item"
+    name="Doctors"
+    parent="hms_root"
+    action="doctor_action"/>
+
+<record id="doctors_view_tree" model="ir.ui.view">
+    <field name="name">doctors.view.tree</field>
+    <field name="model">hms.doctors</field>
+    <field name="arch" type="xml">
+        <tree >
+                   <field name="first_name"></field>
+                    <field name="last_name"></field>
+        </tree>
+    </field>
+</record>
+    <record id="doctors_view_form" model="ir.ui.view">
+        <field name="name">doctors.view.form</field>
+        <field name="model">hms.doctors</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                    <group name="name" string="Basic Info">
+                    <field name="first_name"></field>
+                    <field name="last_name"></field>
+                    </group>
+                    <group string="Photo">
+                    <field name="image" widget="image"></field>                        
+                    </group>
+                    <group name="name" string="Work info">
+                    <field name="patient_id" ></field>                        
+                    <field name="department_id">Department</field>                        
+                        
+                    </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+
+</data>
+    
+
+</odoo>
+
+
+
+
+<!-- <record id="doctors_view_form" model="ir.ui.view">
+    <field name="name">doctors.view.form</field>
+    <field name="model">hms.doctors</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group ="Doctors Info">
+                    <field name="first_name"></field>
+                    <field name="last_name"></field>
+                    <field name="image" widget="image"></field>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record> -->

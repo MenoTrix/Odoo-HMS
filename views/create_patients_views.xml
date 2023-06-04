@@ -1,0 +1,82 @@
+<odoo>
+    <data>
+    <!-- That's for Action we use record a -->
+    <record id="patient_action" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hms.patient</field>
+    </record>   
+    <!-- We need to make 2 menuitems so they appear one for root & one for list and the second one has the action "record" -->
+    <!-- <menuitem
+        id="hms_root"
+        name="HMS"
+        />
+    <menuitem
+        id="hms_patients_list"
+        name="Patients"
+        parent="hms_root"
+        action="patient_action"
+       /> -->
+    
+       <!-- View Tree  -->
+       <record id="patients_tree_view" model="ir.ui.view">
+        <field name="name">Patients Tree View</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="first_name"></field>
+                <field name="last_name"></field>
+                <field name="birthdate"></field>
+                <field name="blood_type"></field>
+                <field name="doctor_id" widget="tag"></field>
+                <field name="department_capacity"></field>
+            </tree>
+        </field>
+       </record>
+       <record id="patients_view_form" model="ir.ui.view">
+        <field name="name">patients.view.form</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                    <group  string="Patient Info">
+                <field name="first_name" 
+                required="1"
+                ></field>
+                <field name="last_name" 
+                required="1"
+                ></field>
+                <field name="birthdate"></field>
+                <field name="age"></field>
+                <field name="address"></field>
+                <field name="history"  attrs="{'invisible':[('age','&lt;',30)]}"></field>
+                    </group>
+                    <group tring="image">
+                <field name="image" widget="image"></field>
+                        
+                    </group>
+                    <group  string="Medical Info">
+                        
+                <field name="blood_type"></field>
+                <field name="pcr"></field>
+                <field name="cr_ratio" attrs="{'required':[('pcr','=',True)]}"></field>
+                <field name="doctor_id" widget="many2many_tags"></field>
+                    </group>
+
+                <group  string="Department Info">
+                <field name="department_id" 
+                    attrs="{'invisible':[('department_status','=',False)]}"
+                 ></field>
+                <field name="department_status"></field>
+                <field name="department_capacity" 
+                ></field>
+                    
+                </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+       </record>
+    </data>
+    
+</odoo>
